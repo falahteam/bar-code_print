@@ -23,6 +23,11 @@ app_license = "mit"
 
 # Includes in <head>
 # ------------------
+doctype_js = {
+    "Purchase Invoice": "public/js/purchase_invoice_barcode_button.js"
+}
+
+
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/barcode_custom_app/css/barcode_custom_app.css"
