@@ -109,7 +109,7 @@ def generate_barcode_labels(docname):
         }, "barcode") or item.item_code
         barcode_val = str(barcode_val).strip()[:30]  # Clip max 30 chars
         item_name = item.item_name or ""
-		item_code = item.item_code or ""
+        item_code = item.item_code or ""
         company = frappe.db.get_value("Company", doc.company, "company_name") or ""
         currency = doc.currency or frappe.db.get_value("Company", doc.company, "default_currency") or ""
         price_val = frappe.db.get_value("Item Price", {
@@ -131,7 +131,7 @@ def generate_barcode_labels(docname):
             c.drawCentredString(sticker_width / 2, 9.3 * mm, barcode_val)
 
             c.setFont("Helvetica-Bold", 6.2)
-            c.drawCentredString(sticker_width / 2, 7.0 * mm, item_name[:24] +" "+ item_code[:24])
+            c.drawCentredString(sticker_width / 2, 7.0 * mm, f"{item_name[:24]} {item_code[:24]}")
 
             c.setFont("Helvetica-Bold", 6)
             c.drawCentredString(sticker_width / 2, 4.3 * mm, f"Price: {price_label}")
@@ -146,3 +146,4 @@ def generate_barcode_labels(docname):
     frappe.local.response.headers = {
         "Content-Disposition": f'inline; filename="Barcode-Labels-{docname}.pdf"'
     }
+
