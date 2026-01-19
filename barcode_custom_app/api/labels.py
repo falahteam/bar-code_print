@@ -110,13 +110,15 @@ def generate_barcode_labels(docname):
         barcode_val = str(barcode_val).strip()[:30]  # Clip max 30 chars
         item_name = item.item_name or ""
         item_code = item.item_code or ""
+        val = frappe.db.get_value("Item", item.item_code, "custom_single_peace_price")
+        custom_single_peace_price = int(val) if val else "NA"
         company = frappe.db.get_value("Company", doc.company, "company_name") or ""
         currency = doc.currency or frappe.db.get_value("Company", doc.company, "default_currency") or ""
         price_val = frappe.db.get_value("Item Price", {
             "item_code": item.item_code,
             "price_list": "Standard Selling"
         }, "price_list_rate")
-        price_label = f"{currency} {price_val:.2f}" if price_val else "NA"
+        price_label = f"{currency} {price_val:.0f}" if price_val else "NA"
 
         for _ in range(qty):
             c.setFont("Helvetica-Bold", 7)
@@ -127,14 +129,17 @@ def generate_barcode_labels(docname):
             barcode_x = (sticker_width - barcode.width) / 2
             barcode.drawOn(c, barcode_x, 11.5 * mm)
 
-            c.setFont("Helvetica", 6.5)
-            c.drawCentredString(sticker_width / 2, 9.3 * mm, barcode_val)
+            c.setFont("Helvetica", 5.5)
+            c.drawCentredString(sticker_width / 2, 9.5 * mm, barcode_val)
 
-            c.setFont("Helvetica-Bold", 6.2)
-            c.drawCentredString(sticker_width / 2, 7.0 * mm, f"{item_name[:24]} {item_code[:24]}")
+            # c.setFont("Helvetica-Bold", 4.5)
+            # c.drawCentredString(sticker_width / 2, 5.5 * mm, f"Item Price: {custom_single_peace_price}/pc")
 
-            c.setFont("Helvetica-Bold", 6)
-            c.drawCentredString(sticker_width / 2, 4.3 * mm, f"Price: {price_label}")
+            c.setFont("Helvetica-Bold", 3.8)
+            c.drawCentredString(sticker_width / 2, 5 * mm, f"Item Price: INR {custom_single_peace_price}, Bundle Price: {price_label}")
+
+            c.setFont("Helvetica-Bold", 4.2)
+            c.drawCentredString(sticker_width / 2, 7 * mm, f"{item_name[:24]} {item_code[:24]}")
 
             c.showPage()
 
