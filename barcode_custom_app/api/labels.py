@@ -96,7 +96,7 @@ def generate_barcode_labels(docname):
 
     buffer = BytesIO()
     sticker_width = 29 * mm
-    sticker_height = 39 * mm
+    sticker_height = 29 * mm
     margin_left = 3 * mm
 
     c = canvas.Canvas(buffer, pagesize=(sticker_width, sticker_height))
