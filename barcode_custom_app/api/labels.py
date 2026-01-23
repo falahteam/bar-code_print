@@ -95,7 +95,7 @@ def generate_barcode_labels(docname):
     doc = frappe.get_doc("Purchase Invoice", docname)
 
     buffer = BytesIO()
-    sticker_width = 45 * mm
+    sticker_width = 46 * mm
     sticker_height = 32 * mm
     margin_left = 3 * mm
 
