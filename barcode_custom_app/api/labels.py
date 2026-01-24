@@ -120,7 +120,7 @@ def generate_barcode_labels(docname):
 
         for _ in range(qty):
             c.setFont("Helvetica-Bold", 9)
-            c.drawCentredString(sticker_width / 2, sticker_height - 5 * mm, "Shifa Enterprices")
+            c.drawCentredString(sticker_width / 2, sticker_height - 7 * mm, "Shifa Enterprices")
 
             # Code 128 barcode
             barcode = code128.Code128(barcode_val, barWidth=0.25 * mm, barHeight=12 * mm)
