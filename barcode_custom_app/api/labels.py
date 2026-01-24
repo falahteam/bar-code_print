@@ -132,10 +132,10 @@ def generate_barcode_labels(docname):
 
             c.setFont("Helvetica-Bold", 7)
             c.drawCentredString(sticker_width / 2, 8 * mm, f"{item_name[:25]} {item_code[:25]}")
-			
+			c.setFont("Helvetica-Bold", 4.5)
+            c.drawCentredString(sticker_width / 2, 5.5 * mm, f"Item Price: {custom_single_peace_price}/pc")
 			c.setFont("Helvetica-Bold", 8)
             c.drawCentredString(sticker_width / 2, 4 * mm, f"Price: {price_label}")
-			
 			c.showPage()
 
     c.save()
