@@ -135,8 +135,8 @@ def generate_barcode_labels(docname):
 			
 			c.setFont("Helvetica-Bold", 7)
             c.drawCentredString(sticker_width / 2, 4 * mm, f"Price: {custom_single_peace_price}")
-
-            c.setFont("Helvetica-Bold", 8)
+			
+			c.setFont("Helvetica-Bold", 8)
             c.drawCentredString(sticker_width / 2, 4 * mm, f"Price: {price_label}")
 
 
