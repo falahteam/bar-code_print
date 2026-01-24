@@ -119,7 +119,7 @@ def generate_barcode_labels(docname):
         price_label = f"{currency} {price_val:.2f}" if price_val else "NA"
 
         for _ in range(qty):
-            c.setFont("Helvetica-Bold", 8)
+            c.setFont("Helvetica-Bold", 9)
             c.drawCentredString(sticker_width / 2, sticker_height - 5 * mm, "Shifa Enterprices")
 
             # Code 128 barcode
