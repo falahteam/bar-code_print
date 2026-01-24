@@ -117,10 +117,21 @@ def generate_barcode_labels(docname):
 
         item_name = item.item_name or ""
         item_code = item.item_code or ""
-		custom_single_peace_price = int(val) if val else "NA"
-        company = frappe.db.get_value("Company", doc.company, "company_name") or ""
+
+        # FIXED: val was undefined
+        val = item.get("custom_single_peace_price")
+        custom_single_peace_price = int(val) if val else "NA"
+
+        company = frappe.db.get_value(
+            "Company",
+            doc.company,
+            "company_name"
+        ) or ""
+
         currency = doc.currency or frappe.db.get_value(
-            "Company", doc.company, "default_currency"
+            "Company",
+            doc.company,
+            "default_currency"
         ) or ""
 
         price_val = frappe.db.get_value(
@@ -147,6 +158,7 @@ def generate_barcode_labels(docname):
                 barWidth=0.25 * mm,
                 barHeight=12 * mm
             )
+
             barcode_x = (sticker_width - barcode.width) / 2
             barcode.drawOn(c, barcode_x, 15 * mm)
 
