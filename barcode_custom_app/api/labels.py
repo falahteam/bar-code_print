@@ -172,7 +172,7 @@ def generate_barcode_labels(docname):
             c.setFont("Helvetica-Bold", 7)
             c.drawCentredString(
                 sticker_width / 2,
-                8 * mm,
+                7 * mm,
                 f"{item_name[:25]} {item_code[:25]}"
             )
 
