@@ -95,9 +95,9 @@ def generate_barcode_labels(docname):
     doc = frappe.get_doc("Purchase Invoice", docname)
 
     buffer = BytesIO()
-    sticker_width = 48 * mm
+    sticker_width = 38 * mm
     sticker_height = 50 * mm
-    margin_left = 3 * mm
+    # margin_left = 3 * mm
 
     c = canvas.Canvas(buffer, pagesize=(sticker_width, sticker_height))
 
@@ -123,9 +123,9 @@ def generate_barcode_labels(docname):
             c.drawCentredString(sticker_width / 2, sticker_height - margin_left, company[:25])
 
             # Code 128 barcode
-            barcode = code128.Code128(barcode_val, barWidth=0.25 * mm, barHeight=12 * mm)
+            barcode = code128.Code128(barcode_val, barWidth=0.30 * mm, barHeight=15 * mm)
             barcode_x = (sticker_width - barcode.width) / 2
-            barcode.drawOn(c, barcode_x, 11.5 * mm)
+            barcode.drawOn(c, barcode_x, 15 * mm)
 
             c.setFont("Helvetica", 6.5)
             c.drawCentredString(sticker_width / 2, 9.3 * mm, barcode_val)
