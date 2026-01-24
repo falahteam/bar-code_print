@@ -125,7 +125,7 @@ def generate_barcode_labels(docname):
             # Code 128 barcode
             barcode = code128.Code128(barcode_val, barWidth=0.30 * mm, barHeight=15 * mm)
             barcode_x = (sticker_width - barcode.width) / 2
-            barcode.drawOn(c, barcode_x, 22 * mm)
+            barcode.drawOn(c, barcode_x, 15 * mm)
 
             c.setFont("Helvetica", 6.5)
             c.drawCentredString(sticker_width / 2, 9.3 * mm, barcode_val)
