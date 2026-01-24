@@ -117,6 +117,7 @@ def generate_barcode_labels(docname):
 
         item_name = item.item_name or ""
         item_code = item.item_code or ""
+		custom_single_peace_price = int(val) if val else "NA"
         company = frappe.db.get_value("Company", doc.company, "company_name") or ""
         currency = doc.currency or frappe.db.get_value(
             "Company", doc.company, "default_currency"
